@@ -12,12 +12,6 @@ $(function () {
 
     savebuttonEL.each(function(event) {
         $(this).on("click", handleFormSubmit);
-        
-        // let userTextImput = $(this).sibling(".description").val();
-        // let blockId = $(this).parent().attr("id")
-
-        // localStorage.setItem(blockId, userTextImput);
-
     });
 
     //
@@ -34,12 +28,18 @@ $(function () {
         for (let i=0; i<timeSections.length; i++){
         if (timeSections[i] > now) {
             $(`#hour-${timeSections[i]}`).addClass('future');
+            $(`#hour-${timeSections[i]}`).removeClass('present');
+            $(`#hour-${timeSections[i]}`).removeClass('past');
         }
         if (timeSections[i] == now) {
             $(`#hour-${timeSections[i]}`).addClass('present');
+            $(`#hour-${timeSections[i]}`).removeClass('future');
+            $(`#hour-${timeSections[i]}`).removeClass('past');
         }
         if (timeSections[i] < now) {
             $(`#hour-${timeSections[i]}`).addClass('past');
+            $(`#hour-${timeSections[i]}`).removeClass('future');
+            $(`#hour-${timeSections[i]}`).removeClass('present');
         }
     }}
     displayColor();
@@ -56,13 +56,20 @@ $(function () {
         console.log(scheduleEl);
         let scheduleText = scheduleEl.val();
         console.log(scheduleText);
-
+        var blockId = $(this).parent().attr("id");
+        localStorage.setItem(blockId, scheduleText);
 
     };
 
-    // save under key name to them be recog, get from local storage 
-
-
+    $("#hour-9 .description").val(localStorage.getItem("hour-9"));
+    $("#hour-10 .description").val(localStorage.getItem("hour-10"));
+    $("#hour-11 .description").val(localStorage.getItem("hour-11"));
+    $("#hour-12 .description").val(localStorage.getItem("hour-12"));
+    $("#hour-13 .description").val(localStorage.getItem("hour-13"));
+    $("#hour-14 .description").val(localStorage.getItem("hour-14"));
+    $("#hour-15 .description").val(localStorage.getItem("hour-15"));
+    $("#hour-16 .description").val(localStorage.getItem("hour-16"));
+    $("#hour-17 .description").val(localStorage.getItem("hour-17"));
 
     //
     // TODO: Add code to display the current date in the header of the page.
