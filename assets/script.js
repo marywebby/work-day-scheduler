@@ -76,3 +76,4 @@ $(function () {
     var today = dayjs();
     $("#currentDay").text(today.format('MM / DD / YYYY'));
   });
+  
